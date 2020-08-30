@@ -1,0 +1,31 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:12.4
+    restart: always
+    volumes:
+      - ~/imagemage/db/postgres:/var/lib/postgres/data
+      - ~/imagemage/db/postgres/sql/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: imagemage
+      POSTGRES_PASSWORD: secret
+    ports:
+      - 1432:5432
+  mongo:
+    image: mongo:4.4.0-bionic
+    restart: always
+    volumes:
+      - ~/imagemage/db/mongo/db:/data/db
+      - ~/imagemage/db/mongo/configdb:/data/configdb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: imagemage
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    ports:
+      - 27076:27017
+  redis:
+    image: redis:6.0.6-buster
+    restart: always
+    volumes:
+      - ~/imagemage/db/redis:/data
+    ports:
+      - 32770:6379

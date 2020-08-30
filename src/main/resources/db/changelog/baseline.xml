@@ -29,4 +29,11 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="2020.08.29_2" author="kdenisova" context="test">
+        <insert tableName="user">
+            <column name="username">kseniia</column>
+            <column name="password">{noop}123</column>
+        </insert>
+    </changeSet>
+
 </databaseChangeLog>
