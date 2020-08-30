@@ -1,2 +1,0 @@
-# ImageMage
-An Image Repository
