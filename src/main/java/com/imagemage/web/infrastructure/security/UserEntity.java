@@ -15,29 +15,49 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String username;
+    private String password;
+    private String email;
+    private boolean expired;
+    private boolean locked;
+    private boolean enabled;
+
+    public UserEntity() {
+
+    }
+
+    public UserEntity(String username, String password,String email, boolean expired, boolean locked, boolean enabled) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.expired = expired;
+        this.locked = locked;
+        this.enabled = enabled;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    @NotNull
-    @Size(min = 2, message = "Username must be at least 2 characters long")
-    private String username;
-
     public void setPassword(String password) {
         this.password = password;
     }
 
-    @NotNull
-    @ValidPassword
-    private String password;
+    public String getPassword() {
+        return password;
+    }
 
-    @NotNull
-    @Email
-    private String email;
-    private boolean expired;
-    private boolean locked;
-    private boolean enabled;
+    public String getUsername() {
+        return username;
+    }
 
     public String getEmail() {
         return email;
@@ -49,23 +69,6 @@ public class UserEntity {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-    }
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getUsername() {
-        return username;
     }
 
     public boolean isExpired() {

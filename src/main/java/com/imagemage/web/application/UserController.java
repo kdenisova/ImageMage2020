@@ -1,14 +1,15 @@
 package com.imagemage.web.application;
 
-import com.imagemage.web.infrastructure.security.UserEntity;
+import com.imagemage.web.infrastructure.security.UserForm;
 import com.imagemage.web.infrastructure.security.UserService;
-import com.imagemage.web.infrastructure.security.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
 
 @Controller
 public class UserController {
@@ -19,9 +20,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @ModelAttribute("user")
-    public UserEntity userEntity() {
-        return new UserEntity();
+    @ModelAttribute("userform")
+    public UserForm userForm() {
+        return new UserForm();
     }
 
     @GetMapping("/login")
@@ -35,13 +36,13 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public String signUp(@ModelAttribute("user") UserEntity userEntity, BindingResult bindingResult) {
+    public String signUp(@ModelAttribute("user") @Valid UserForm userForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            System.out.println("Vaidation error");
+            System.out.println("Validation error");
             return "/signup";
         }
 
-        userService.save(userEntity);
+        userService.save(userForm.toUserEntity());
 
         return "redirect:/login";
     }
