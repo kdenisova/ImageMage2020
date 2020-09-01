@@ -1,6 +1,7 @@
 package com.imagemage.web;
 
-import com.zaxxer.hikari.*;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +13,8 @@ import javax.sql.DataSource;
 public class CustomHikariConfig extends HikariConfig {
 
     @Bean
-    public DataSource dataSource() {
+    @Override
+    public DataSource getDataSource() {
         return new HikariDataSource(this);
     }
 }
