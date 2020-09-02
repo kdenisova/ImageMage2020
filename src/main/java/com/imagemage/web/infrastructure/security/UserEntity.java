@@ -1,11 +1,10 @@
 package com.imagemage.web.infrastructure.security;
 
-import com.imagemage.web.validation.ValidPassword;
+
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -21,6 +20,9 @@ public class UserEntity {
     private boolean expired;
     private boolean locked;
     private boolean enabled;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ImageEntity> images;
 
     public UserEntity() {
 
@@ -81,6 +83,14 @@ public class UserEntity {
 
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public List<ImageEntity> getImages() {
+        return images;
+    }
+
+    public void setImages(List<ImageEntity> images) {
+        this.images = images;
     }
 
     @Override

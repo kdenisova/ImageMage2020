@@ -44,4 +44,37 @@
         </addColumn>
     </changeSet>
 
+    <changeSet  id="2020.09.01_1" author="kdenisova" context="imageTable">
+        <createTable  tableName="image">
+            <column  name="id"  type="bigint" autoIncrement="true">
+                <constraints  primaryKey="true"  nullable="false" />
+            </column>
+            <column  name="userid"  type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="username"  type="nvarchar(50)">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="date"  type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet  id="2020.09.01_2" author="kdenisova" context="imageTable2">
+        <createTable  tableName="image">
+            <column  name="id"  type="bigint" autoIncrement="true">
+                <constraints  primaryKey="true"  nullable="false" />
+            </column>
+            <column  name="userid"  type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="username"  type="nvarchar(50)">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="date"  type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
